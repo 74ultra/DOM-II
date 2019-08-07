@@ -35,13 +35,15 @@ let buttonPush = document.querySelectorAll('.btn');
 
 buttonPush.forEach(button => {
     button.addEventListener('mousedown', event => {
-        event.target.textContent = "You're doing it!"
+        event.target.textContent = "You're doing it!";
+        event.stopPropagation();
     })
 
     button.addEventListener('mouseup', event => {
         event.target.textContent = "You're Signed Up!";
         event.target.style.background = "red"
         event.target.style.filter = "drop-shadow(0 0 1rem crimson)";
+        event.stopPropagation();
     })
 })
 
@@ -74,7 +76,10 @@ let allImages = document.querySelectorAll('img');
 
 allImages.forEach(imgr => {
     imgr.addEventListener('dblclick', event => {
+        event.stopPropagation();
         event.target.classList.add('disappear');
+        console.log('disappear');
+        
     })
 })
 
@@ -84,6 +89,17 @@ let everything = document.querySelector('html');
 console.log(everything);
 
 window.addEventListener('load', () => {
-    everything.stopPropagation();
-    everything.style.backgroundColor = 'red';
+    
+    everything.classList.toggle('beigeBackground');
+})
+
+let dest = document.querySelectorAll('.destination');
+
+console.log(dest);
+
+
+dest.forEach(item => {
+    item.addEventListener('click', event => {
+        event.target.classList.toggle('disappear');
+    })
 })
